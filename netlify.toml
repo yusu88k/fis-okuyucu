@@ -1,0 +1,31 @@
+# Netlify yapılandırması — SADECE frontend (React) burada yayınlanır.
+# Backend (Express) Netlify'da çalışmaz; onu Render/Railway'e ayrıca deploy edin (bkz. DEPLOY.md).
+#
+# ÖNEMLİ: REACT_APP_BACKEND_URL'yi Netlify panelinden (Site settings > Environment variables)
+# backend adresinize göre ayarlayın, örn: https://fisten-excele-backend.onrender.com
+# (Sonuna /api EKLEMEYİN; kod otomatik ekler.) Bu değer build sırasında gömülür.
+
+[build]
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # CRA'da uyarıları hata sayıp build'i durdurmasın (proje uyarısız derlenir, bu bir güvenlik ağıdır)
+  CI = "false"
+
+# SPA yönlendirmesi: tüm yollar index.html'e (React Router / #admin çalışsın)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Temel güvenlik başlıkları (statik site için)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

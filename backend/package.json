@@ -1,0 +1,26 @@
+{
+  "name": "fis-excel-backend",
+  "version": "1.0.0",
+  "description": "Fiş fotoğrafından Excel'e - Node.js + Express backend",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "poc": "node scripts/poc_receipt.js",
+    "test:key": "node scripts/test_key.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.10.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1",
+    "heic-convert": "^2.1.0",
+    "multer": "^2.2.0",
+    "p-limit": "^7.3.0",
+    "sharp": "^0.35.3",
+    "uuid": "^14.0.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}

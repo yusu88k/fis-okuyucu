@@ -1,0 +1,43 @@
+# Render.com Blueprint — backend (Express) için.
+# Render panelinde "New > Blueprint" ile bu repoyu bağlayınca otomatik okunur.
+# sync:false olan anahtarları Render panelinden GİZLİ olarak girin (repoya koymayın).
+services:
+  - type: web
+    name: fisten-excele-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: PORT
+        value: "8002"
+      # --- Sağlayıcı anahtarları (Render panelinden gizli girin) ---
+      - key: KIMI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: kimi-k2.5
+      - key: NVIDIA_VISION_MODEL
+        value: meta/llama-3.2-90b-vision-instruct
+      # --- Admin & güvenlik ---
+      - key: ADMIN_PASSWORD
+        sync: false
+      # Netlify frontend adresinizi buraya yazın, örn: https://SITENIZ.netlify.app
+      - key: ALLOWED_ORIGINS
+        sync: false
+    # NOT: Kalıcı disk (kaydedilen müşteriler + fiş görselleri db.json/images) yalnızca
+    # ÜCRETLİ planlarda çalışır. Ücretsiz planda veriler yeniden dağıtımda/uyanışta sıfırlanır.
+    # Kalıcılık isterseniz planı yükseltip aşağıdaki bloğun yorumunu kaldırın:
+    # disk:
+    #   name: store
+    #   mountPath: /opt/render/project/src/backend/store
+    #   sizeGB: 1

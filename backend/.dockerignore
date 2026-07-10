@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.env
+store/db.json
+store/analytics.json
+store/analytics.json.tmp
+store/learning_memory.json
+store/images
+*.log

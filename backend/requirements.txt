@@ -1,0 +1,6 @@
+# Platform supervisor / server.py için gereken minimum bağımlılıklar
+httpx>=0.28.1
+starlette>=0.37.2
+
+# Lokal test scripti için
+requests>=2.31.0
