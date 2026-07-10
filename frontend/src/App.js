@@ -589,8 +589,8 @@ export default function App() {
       />
 
       <main className={viewMode === 'excel'
-        ? 'relative w-full px-3 sm:px-4 py-4 space-y-3'
-        : 'relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8'}>
+        ? 'relative w-full px-1.5 sm:px-4 py-3 sm:py-4 space-y-3'
+        : 'relative max-w-[1440px] mx-auto px-2 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6 sm:space-y-8'}>
         {/* Teşhis/Hata Bildirim Alanı */}
         {diagnostics && !diagnostics.apiKeyValid && !dismissDiagnostics && (
           <Alert variant="destructive" className="bg-destructive/10 border-destructive/30 text-destructive-foreground mb-4">

@@ -377,7 +377,7 @@ export const ResultsTable = ({ receipts, selectedId, onSelect, onEdit, onApprove
   const showApproveAction = selectedReceipt?.status === 'kontrol_gerekli';
 
   return (
-    <Card className="shadow-[var(--shadow-soft)] p-4 border border-slate-200 bg-white">
+    <Card className="shadow-[var(--shadow-soft)] p-2 sm:p-4 border border-slate-200 bg-white">
       {selectedReceipt && (
         <div className="flex items-center justify-between gap-2 mb-3 bg-slate-50 p-2.5 rounded-lg border">
           <div className="text-xs text-muted-foreground">
@@ -468,6 +468,8 @@ export const ResultsTable = ({ receipts, selectedId, onSelect, onEdit, onApprove
         </div>
       )}
 
+      {/* Mobilde tablo geniştir: yana kaydırma ipucu (sadece küçük ekran) */}
+      <p className="sm:hidden text-[11px] text-muted-foreground text-center mb-1">← Tabloyu parmakla yana kaydırabilirsiniz →</p>
       {/* Jspreadsheet Canlı Excel Tablo Alanı */}
       <div
         className={`overflow-auto excel-theme-wrapper ${fullHeight ? '' : 'overflow-x-auto'}`}
