@@ -69,8 +69,8 @@ export const TopBar = ({ summary, hasData, hasAny, onExport, onOpenSettings, onC
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3 min-w-0">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 min-h-16 py-2 flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           {/* Logo + başlık: tıklayınca ana görünüme (Panel) döner */}
           <button
             type="button"
@@ -169,7 +169,7 @@ export const TopBar = ({ summary, hasData, hasAny, onExport, onOpenSettings, onC
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {hasAny && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -206,10 +206,10 @@ export const TopBar = ({ summary, hasData, hasAny, onExport, onOpenSettings, onC
             onClick={onOpenPreview}
             disabled={!hasData}
             data-testid="preview-xlsx-button"
-            className="h-10 md:h-11 px-3 border-emerald-600/30 text-emerald-700 hover:bg-emerald-50"
+            className="h-9 md:h-11 px-2.5 md:px-3 border-emerald-600/30 text-emerald-700 hover:bg-emerald-50"
           >
-            <Eye className="h-4 w-4 mr-1.5" />
-            Tablo Önizle
+            <Eye className="h-4 w-4 sm:mr-1.5" />
+            <span className="hidden sm:inline">Tablo Önizle</span>
           </Button>
           <Button
             onClick={onExport}

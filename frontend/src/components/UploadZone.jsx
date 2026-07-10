@@ -1,15 +1,20 @@
 // Büyük sürükle-bırak yükleme alanı (foolproof: tıkla veya sürükle)
 import { useRef, useState } from 'react';
-import { ScanLine, Loader2, Images, FileSpreadsheet, PlusCircle } from 'lucide-react';
+import { ScanLine, Loader2, Images, FileSpreadsheet, PlusCircle, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export const UploadZone = ({ onFiles, onExcelImport, onAddManualRow, uploading, count, maxFiles = 200 }) => {
   const inputRef = useRef(null);
+  const cameraInputRef = useRef(null);
   const excelInputRef = useRef(null);
   const [dragOver, setDragOver] = useState(false);
 
   const openPicker = () => inputRef.current?.click();
+  const openCamera = (e) => {
+    e.stopPropagation();
+    cameraInputRef.current?.click();
+  };
   const openExcelPicker = (e) => {
     e.stopPropagation();
     excelInputRef.current?.click();
@@ -70,6 +75,10 @@ export const UploadZone = ({ onFiles, onExcelImport, onAddManualRow, uploading, 
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3">
+        <Button onClick={openCamera} className="h-10 text-xs sm:text-sm" data-testid="camera-capture-button">
+          <Camera className="h-4 w-4 mr-1.5" />
+          Kamera ile Fiş Çek
+        </Button>
         <Button variant="outline" onClick={openExcelPicker} className="h-10 text-xs sm:text-sm" data-testid="import-excel-button">
           <FileSpreadsheet className="h-4 w-4 mr-1.5 text-emerald-600" />
           Excel Dosyası (.xlsx) Yükle
@@ -86,6 +95,19 @@ export const UploadZone = ({ onFiles, onExcelImport, onAddManualRow, uploading, 
         type="file"
         multiple
         accept=".jpg,.jpeg,.png,.webp,.heic,.heif,image/jpeg,image/png,image/webp,image/heic,image/heif"
+        className="hidden"
+        onChange={(e) => {
+          onFiles(e.target.files);
+          e.target.value = '';
+        }}
+      />
+
+      {/* Telefonda arka kamerayı direkt açar (canlı çekim); masaüstünde normal dosya seçer */}
+      <input
+        ref={cameraInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
         className="hidden"
         onChange={(e) => {
           onFiles(e.target.files);

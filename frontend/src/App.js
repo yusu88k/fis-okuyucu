@@ -19,6 +19,7 @@ import { AdminPanel } from '@/components/AdminPanel';
 import { ExcelPreviewDialog } from '@/components/ExcelPreviewDialog';
 import { SheetPickerDialog } from '@/components/SheetPickerDialog';
 import { BackendWaking } from '@/components/BackendWaking';
+import { PasswordGate, isUnlocked } from '@/components/PasswordGate';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -47,6 +48,7 @@ export default function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [askNonce, setAskNonce] = useState(0);
   const [uploading, setUploading] = useState(false);
+  const [unlocked, setUnlocked] = useState(isUnlocked); // Basit şifre kapısı
   // Backend hazır mı? (Render ücretsiz plan uyandığında cold-start ~50sn — bekleme ekranı gösterilir)
   const [backendReady, setBackendReady] = useState(false);
   const [showWaking, setShowWaking] = useState(false);
@@ -557,6 +559,11 @@ export default function App() {
   const activeCount = receipts.filter((r) => r.status === 'bekliyor' || r.status === 'isleniyor').length;
   const errorCount = receipts.filter((r) => r.status === 'hata').length;
   const grandTotal = filteredReceipts.reduce((sum, r) => sum + (Number(r.data?.toplam) || 0), 0);
+
+  // Şifre kapısı: girilmeden hiçbir şey gösterilmez (bot/yabancı erişimini keser)
+  if (!unlocked) {
+    return <PasswordGate onUnlock={() => setUnlocked(true)} />;
+  }
 
   // Backend henüz hazır değilse: ilk 1.5sn boş (flash olmasın), sonra bekleme ekranı
   if (!backendReady) {
