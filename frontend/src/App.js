@@ -18,6 +18,7 @@ import { SkippedReceipts } from '@/components/SkippedReceipts';
 import { AdminPanel } from '@/components/AdminPanel';
 import { ExcelPreviewDialog } from '@/components/ExcelPreviewDialog';
 import { SheetPickerDialog } from '@/components/SheetPickerDialog';
+import { BackendWaking } from '@/components/BackendWaking';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -46,6 +47,10 @@ export default function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [askNonce, setAskNonce] = useState(0);
   const [uploading, setUploading] = useState(false);
+  // Backend hazır mı? (Render ücretsiz plan uyandığında cold-start ~50sn — bekleme ekranı gösterilir)
+  const [backendReady, setBackendReady] = useState(false);
+  const [showWaking, setShowWaking] = useState(false);
+  const [wakeElapsed, setWakeElapsed] = useState(0);
   const [sheetPick, setSheetPick] = useState(null); // { file, sheets, suggested } — çok sekmeli Excel seçici
   const [excelPreviewOpen, setExcelPreviewOpen] = useState(false);
   const [diagnostics, setDiagnostics] = useState(null);
@@ -148,6 +153,30 @@ export default function App() {
     const timer = setInterval(() => refresh(), 1500);
     return () => clearInterval(timer);
   }, [sessionId, isActive, refresh]);
+
+  // Backend sağlık kontrolü: sunucu (Render) uyanana kadar yokla; hazır olunca uygulamayı aç.
+  // 1.5sn içinde cevap verirse (localhost) bekleme ekranı hiç görünmez.
+  useEffect(() => {
+    let cancelled = false;
+    const started = Date.now();
+    const wakeTimer = setTimeout(() => { if (!cancelled) setShowWaking(true); }, 1500);
+    const elapsedTimer = setInterval(() => {
+      if (!cancelled) setWakeElapsed(Math.floor((Date.now() - started) / 1000));
+    }, 1000);
+    const ping = async () => {
+      try {
+        await api.get('/health', { timeout: 8000 });
+        if (cancelled) return;
+        setBackendReady(true);
+        setShowWaking(false);
+        clearInterval(elapsedTimer);
+      } catch {
+        if (!cancelled) setTimeout(ping, 3000);
+      }
+    };
+    ping();
+    return () => { cancelled = true; clearTimeout(wakeTimer); clearInterval(elapsedTimer); };
+  }, []);
 
   // Sağlayıcı değişikliğini kullanıcıya bir kez bildir (örn. Gemini çöktü, Kimi devraldı)
   useEffect(() => {
@@ -528,6 +557,13 @@ export default function App() {
   const activeCount = receipts.filter((r) => r.status === 'bekliyor' || r.status === 'isleniyor').length;
   const errorCount = receipts.filter((r) => r.status === 'hata').length;
   const grandTotal = filteredReceipts.reduce((sum, r) => sum + (Number(r.data?.toplam) || 0), 0);
+
+  // Backend henüz hazır değilse: ilk 1.5sn boş (flash olmasın), sonra bekleme ekranı
+  if (!backendReady) {
+    return showWaking
+      ? <BackendWaking elapsed={wakeElapsed} onRetry={() => window.location.reload()} />
+      : <div className="min-h-screen bg-background noise-bg" />;
+  }
 
   return (
     <div className="min-h-screen bg-background noise-bg">
