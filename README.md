@@ -140,4 +140,4 @@ Hata bildirimi ve öneriler için issue açabilirsiniz. Arayüz metinleri ve kod
 
 ---
 
-<sub>Bu proje yapay zekâ destekli (Claude Code) olarak geliştirilmiştir.</sub>
+<sub>Bu proje yapay zekâ destekli (Claude Code) ile geliştirilmiştir.</sub>
