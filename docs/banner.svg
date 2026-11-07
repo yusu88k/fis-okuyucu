@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Fişten Excel'e">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect y="312" width="1200" height="8" fill="url(#accent)"/>
+
+  <!-- fiş -->
+  <g transform="translate(96,78)">
+    <rect x="0" y="0" width="110" height="164" rx="8" fill="#f8fafc"/>
+    <path d="M0 158 l13 10 13-10 13 10 13-10 13 10 13-10 13 10 13-10 13 10V164H0z" fill="#f8fafc"/>
+    <rect x="16" y="22" width="78" height="9" rx="4" fill="#94a3b8"/>
+    <rect x="16" y="46" width="60" height="7" rx="3" fill="#cbd5e1"/>
+    <rect x="16" y="64" width="78" height="7" rx="3" fill="#cbd5e1"/>
+    <rect x="16" y="82" width="52" height="7" rx="3" fill="#cbd5e1"/>
+    <rect x="16" y="110" width="78" height="10" rx="4" fill="#38bdf8"/>
+  </g>
+
+  <!-- ok -->
+  <g transform="translate(246,152)">
+    <path d="M0 8h86" stroke="url(#accent)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M78 -6l18 14-18 14" fill="none" stroke="url(#accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="8" y="-14" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#94a3b8">yapay zekâ</text>
+  </g>
+
+  <!-- excel -->
+  <g transform="translate(372,78)">
+    <rect x="0" y="0" width="136" height="164" rx="10" fill="#065f46"/>
+    <rect x="12" y="14" width="112" height="24" rx="5" fill="#34d399"/>
+    <g fill="#d1fae5">
+      <rect x="12" y="48" width="50" height="16" rx="3"/><rect x="70" y="48" width="54" height="16" rx="3"/>
+      <rect x="12" y="72" width="50" height="16" rx="3"/><rect x="70" y="72" width="54" height="16" rx="3"/>
+      <rect x="12" y="96" width="50" height="16" rx="3"/><rect x="70" y="96" width="54" height="16" rx="3"/>
+      <rect x="12" y="120" width="50" height="16" rx="3"/><rect x="70" y="120" width="54" height="16" rx="3"/>
+    </g>
+  </g>
+
+  <text x="560" y="130" font-family="Segoe UI,Arial,sans-serif" font-size="56" font-weight="700" fill="#f8fafc">Fişten Excel'e</text>
+  <text x="562" y="178" font-family="Segoe UI,Arial,sans-serif" font-size="25" fill="#94a3b8">Fiş okuyucu muhasebe programı</text>
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#cbd5e1">
+    <rect x="562" y="206" width="146" height="34" rx="17" fill="#334155"/><text x="580" y="229">KDV kırılımı</text>
+    <rect x="720" y="206" width="132" height="34" rx="17" fill="#334155"/><text x="738" y="229">dekont/fatura</text>
+    <rect x="864" y="206" width="150" height="34" rx="17" fill="#334155"/><text x="882" y="229">Excel'e aktarım</text>
+  </g>
+</svg>
