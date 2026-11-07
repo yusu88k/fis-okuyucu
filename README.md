@@ -39,7 +39,7 @@ Muhasebeciler her ay yüzlerce fişi tek tek Excel'e giriyor: firma, tarih, KDV 
 
 ## Ekran görüntüleri
 
-**Fişler okunduktan sonra:** KDV oranlarına göre otomatik kırılım, genel toplam ve düzenlenebilir tablo.
+**Tablo görünümü:** her fiş için KDV kırılımı (%1 / %10 / %20), toplam, ödeme türü, **güven skoru**, durum ve harcama türü — hepsi düzenlenebilir tek bir Excel benzeri tabloda.
 
 ![Sonuç tablosu ve KDV özeti](docs/ekran-1-tablo.jpg)
 
