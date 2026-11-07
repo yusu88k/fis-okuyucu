@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Lock, FileSpreadsheet } from 'lucide-react';
 
-const APP_PASSWORD = 'test123';
+// Şifre derleme anında REACT_APP_APP_PASSWORD ile verilir (açık repoda gerçek şifre durmasın).
+const APP_PASSWORD = process.env.REACT_APP_APP_PASSWORD || 'test123';
 const UNLOCK_KEY = 'app_unlocked';
 
 export function isUnlocked() {

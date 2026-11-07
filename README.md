@@ -24,8 +24,8 @@ Anneniz / muhasebeci kullanıcılar için yapılmış, yapay zekâ destekli fiş
 ```bash
 # Backend
 cp backend/.env.example backend/.env
-# backend/.env içine KIMI_API_KEY değerini yapıştırın (ana model: kimi-k2.5)
-# İsterseniz GEMINI_API_KEY de ekleyin; Kimi çökerse gemini-2.5-flash yedeğe geçer
+# backend/.env içine KIMI_API_KEY değerini yapıştırın (ana model: kimi-k2.6)
+# İsterseniz GEMINI_API_KEY de ekleyin; Kimi çökerse Gemini yedeğe geçer (varsayılan olarak kapalı)
 # İsterseniz MAX_FILES=500 gibi yüksek hacimli işlem sayısını artırabilirsiniz
 
 # Frontend
@@ -94,3 +94,38 @@ python backend_test.py
 # POC script (Gemini API anahtarı gerekli)
 cd backend && npm run poc
 ```
+
+## Kullanılan yapay zekâ modelleri
+
+| Rol | Model | Not |
+|---|---|---|
+| Ana okuma | `kimi-k2.6` | En uygun maliyetli vision modeli (~$0.003 / fiş) |
+| Zor fiş (eskalasyon) | `kimi-k3.1-pro` | İlk okuma "kontrol gerekli" dönerse devreye girer |
+
+Model adları `backend/.env` içinden değiştirilebilir (`AI_MODEL`, `ESCALATION_MODELS`)
+veya uygulama içindeki ⚙️ Ayarlar menüsünden seçilebilir.
+Güncel model listesini `GET https://api.moonshot.ai/v1/models` ile doğrulayabilirsiniz.
+
+## Giriş şifresi
+
+Uygulama basit bir giriş kapısıyla korunur. Şifre **derleme anında** verilir:
+
+```bash
+REACT_APP_APP_PASSWORD="kendi-sifreniz" npm run build
+```
+
+Verilmezse `test123` kullanılır. Bu istemci tarafı basit bir korumadır
+(botları ve meraklı ziyaretçileri keser, profesyonel bir saldırganı değil).
+
+## Katkı
+
+Hata bildirimi ve öneriler için issue açabilirsiniz. Arayüz metinleri ve
+kod yorumları Türkçedir; katkılarda bu dili koruyun.
+
+## Lisans
+
+[MIT](LICENSE) — dilediğiniz gibi kullanın, değiştirin ve dağıtın.
+
+---
+
+> Bu proje yapay zekâ destekli (Claude Code) olarak geliştirilmiştir.

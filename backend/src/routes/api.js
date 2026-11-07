@@ -57,9 +57,9 @@ const ALLOWED_EXT = /\.(jpe?g|png|webp|heic|heif)$/i;
 // kimi-* modeller Moonshot API'ye, gemini-* modeller Google'a gider
 // ŞU AN KİMİ-ONLY: kullanıcıya sadece Kimi modelleri önerilir (Gemini/NVIDIA gizlendi).
 const MODEL_SUGGESTIONS = [
-  'kimi-k2.5',
   'kimi-k2.6',
-  'kimi-k2.7-code',
+  'kimi-k3.1-pro',
+  'kimi-k3.1-pro-highspeed',
 ];
 
 // --- Sağlık ---
@@ -104,7 +104,7 @@ router.get('/diagnostics', async (req, res) => {
 router.get('/settings', (req, res) => {
   res.json({
     model: config.model,
-    defaultModel: process.env.AI_MODEL || process.env.GEMINI_MODEL || 'kimi-k2.5',
+    defaultModel: process.env.AI_MODEL || process.env.GEMINI_MODEL || 'kimi-k2.6',
     // ŞU AN KİMİ-ONLY: NVIDIA hızlı seçime eklenmiyor (altyapı duruyor, GUI'de gizli).
     suggestions: MODEL_SUGGESTIONS,
     thinkingMode: config.thinkingMode,

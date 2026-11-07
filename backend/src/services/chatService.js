@@ -478,8 +478,8 @@ Gerçekten BOŞ olan bir alan varsa fis_guncelle ile doldurabilirsin.`
   if (!agentFn) {
     if (config.kimiApiKey) {
       try {
-        console.warn('[chat] Gemini yanıt vermedi, Kimi (kimi-k2.5) ile deneniyor...');
-        const result = await runAgentLoop(session, toKimiMessages(), 'kimi-k2.5', visitorId, kimiChatCompletion);
+        console.warn('[chat] Gemini yanıt vermedi, Kimi (kimi-k2.6) ile deneniyor...');
+        const result = await runAgentLoop(session, toKimiMessages(), 'kimi-k2.6', visitorId, kimiChatCompletion);
         if (result.reply) return result;
       } catch (fallbackErr) {
         console.warn('[chat] Kimi yedeği de başarısız:', fallbackErr?.message || fallbackErr);

@@ -86,7 +86,7 @@ export async function extractReceipt(jpegBuffer, modelOverride = null, opts = {}
     ? [modelOverride || config.model]
     : [
         modelOverride || config.model,
-        ...(config.kimiApiKey ? ['kimi-k2.5'] : []),
+        ...(config.kimiApiKey ? ['kimi-k2.6'] : []),
       ];
   const uniqueModels = [...new Set(modelsToTry.filter(Boolean))];
 

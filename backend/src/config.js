@@ -15,8 +15,8 @@ function reloadEnv() {
 reloadEnv();
 
 // Çalışma zamanında değiştirilebilir model adı (UI ayar panelinden güncellenebilir)
-// AI_MODEL öncelikli; ana model Kimi (en ucuz vision modeli kimi-k2.5), Gemini yedek olarak durur
-let currentModel = process.env.AI_MODEL || process.env.GEMINI_MODEL || 'kimi-k2.5';
+// AI_MODEL öncelikli; ana model Kimi (en ucuz vision modeli kimi-k2.6), Gemini yedek olarak durur
+let currentModel = process.env.AI_MODEL || process.env.GEMINI_MODEL || 'kimi-k2.6';
 
 // Düşünme (thinking) modu — UI ayar panelinden değiştirilebilir:
 //   'auto' (önerilen): ilk okuma hızlı/düşünmesiz; fiş okunamazsa eskalasyonda düşünme açılır
@@ -62,7 +62,7 @@ export const config = {
   // (düşünme modu açık çalışırlar). .env'de ESCALATION_MODELS ile değiştirilebilir.
   get escalationModels() {
     reloadEnv();
-    return (process.env.ESCALATION_MODELS || 'kimi-k2.6,kimi-k2.7-code')
+    return (process.env.ESCALATION_MODELS || 'kimi-k3.1-pro')
       .split(',')
       .map((s) => s.trim())
       .filter(Boolean);

@@ -266,7 +266,7 @@ async function aiColumnMap(sample) {
   try {
     const res = await kimiChatCompletion(
       [{ role: 'user', content: `${MAP_PROMPT}\n\nSatırlar:\n${sample}` }],
-      { model: 'kimi-k2.5', maxTokens: 512 }
+      { model: 'kimi-k2.6', maxTokens: 512 }
     );
     text = res.text;
   } catch (err) {
@@ -356,7 +356,7 @@ async function aiParseChunk(csv) {
   try {
     const res = await kimiChatCompletion(
       [{ role: 'user', content: `${AI_IMPORT_PROMPT}\n\nSatırlar (CSV, ayraç ;):\n${csv}` }],
-      { model: 'kimi-k2.5', maxTokens: 8192 }
+      { model: 'kimi-k2.6', maxTokens: 8192 }
     );
     text = res.text;
   } catch (err) {

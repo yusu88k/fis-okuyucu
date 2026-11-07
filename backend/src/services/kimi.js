@@ -10,7 +10,7 @@ export function isKimiModel(name) {
 }
 
 // OpenAI uyumlu chat completion çağrısı (görsel destekli)
-// NOT: kimi-k2.5 sadece temperature=1 kabul ediyor; bu yüzden temperature hiç gönderilmez.
+// NOT: kimi-k2.6 sadece temperature=1 kabul ediyor; bu yüzden temperature hiç gönderilmez.
 // Maliyet/hız optimizasyonu: düşünme (thinking) modu varsayılan kapalı.
 // `thinking: true` parametresiyle çağrı bazında açılır (eskalasyon denemeleri böyle çalışır);
 // .env'de KIMI_THINKING=1 ile her çağrıda açılabilir (daha yavaş ve pahalı ama daha titiz).
@@ -82,7 +82,7 @@ export async function extractReceiptKimi(jpegBuffer, model, { thinking = undefin
 }
 
 // Kimi API anahtarını küçük bir metin çağrısıyla doğrular
-export async function testKimiKey(apiKeyOverride = null, model = 'kimi-k2.5') {
+export async function testKimiKey(apiKeyOverride = null, model = 'kimi-k2.6') {
   const { text } = await kimiChatCompletion(
     [{ role: 'user', content: 'Merhaba, bu bir testtir. Tek kelimeyle yanıtla.' }],
     { model, maxTokens: 512, apiKeyOverride }

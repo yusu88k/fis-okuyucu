@@ -5,9 +5,13 @@
 
 // 1.000.000 token başına USD (giriş / çıkış). Yaklaşık değerler.
 const DEFAULT_PRICES = {
+  // kimi-k2.5 31.08.2026'da emekli oldu; eski kayitlar fiyatlanabilsin diye duruyor.
   'kimi-k2.5': { in: 0.15, out: 2.50 },
   'kimi-k2.6': { in: 0.60, out: 2.50 },
   'kimi-k2.7-code': { in: 1.00, out: 3.00 },
+  'kimi-k3': { in: 3.00, out: 15.00 },
+  'kimi-k3.1-pro': { in: 2.00, out: 10.00 },
+  'kimi-k3.1-pro-highspeed': { in: 4.00, out: 20.00 },
   'moonshot': { in: 0.60, out: 2.50 },
   'gemini-2.5-flash': { in: 0.30, out: 2.50 },
   'gemini-2.5-flash-lite': { in: 0.10, out: 0.40 },
