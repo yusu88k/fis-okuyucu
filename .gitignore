@@ -85,3 +85,6 @@ android-sdk/
 
 # Kalici veri (musteri fisleri, gorseller, ogrenme hafizasi) - repoya girmez
 backend/store/
+
+# Claude Code proje talimatlari (yerelde kalsin, repoda olmasin)
+CLAUDE.md

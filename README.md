@@ -37,10 +37,17 @@ Muhasebeciler her ay yüzlerce fişi tek tek Excel'e giriyor: firma, tarih, KDV 
 - ↩️ **Geri alınabilir silme**, mükerrer fiş tespiti, müşteri (mükellef) bazlı kayıt.
 - 📈 **Yönetici paneli** — kullanım, maliyet takibi ve aktivite günlüğü (`#admin`).
 
-## Ekran görüntüsü
+## Ekran görüntüleri
 
-> Programın kendi arayüzünden görseller eklemek isterseniz `docs/` klasörüne koyup buraya bağlayabilirsiniz.
-> ⚠️ Gerçek müşteri/fiş verisi içeren ekran görüntüsü paylaşmayın.
+**Fişler okunduktan sonra:** KDV oranlarına göre otomatik kırılım, genel toplam ve düzenlenebilir tablo.
+
+![Sonuç tablosu ve KDV özeti](docs/ekran-1-tablo.jpg)
+
+**Fiş paneli:** tablodan bir satıra tıklayınca fişin fotoğrafı açılır; okunanla karşılaştırıp düzeltebilirsiniz.
+
+![Fiş detay paneli](docs/ekran-2-fis-paneli.jpg)
+
+> Görsellerdeki tüm veriler **test amaçlı üretilmiş örnek fişlerdir**, gerçek müşteri verisi içermez.
 
 ## Proje yapısı
 
